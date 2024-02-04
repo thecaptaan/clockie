@@ -1,0 +1,16 @@
+{
+  "name": "clockie",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^27.0.2",
+    "nodemon": "^3.0.1"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

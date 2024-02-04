@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body>
+    <div class="time-zone-container cent">
+
+    </div>
+    <script src="../timezone/svg-world-map.js"></script>
+    <script src="../timezone/svg-pan-zoom.min.js"></script>
+    <script src="../timezone/chart.min.js"></script>
+    <script>
+        let option = {
+            libPath: '../timezone/',
+            bigMap: true,
+            showOcean: true, // Show or hide ocean layer
+            showAntarctica: false,
+            backgroundImage: false,
+
+            // Time controls
+            timeControls: true, // Set to 'true' for time controls
+            timePause: true, // Set to 'false' for time animation autostart
+            timeLoop: true,
+            mapClick: 'zoneFinder',
+            provinceStroke: { out: '#FFFFFF',  over: '#FF0000',  click: '#666666' }
+        }
+        var myWorldMap;
+        loadSVGWorldMap();
+        async function loadSVGWorldMap() {
+            myWorldMap = await svgWorldMap(option);
+
+        }
+        function zoneFinder(e) {
+            // console.log(e.id);
+            if (e.country != undefined && e.id != 'Ocean') {
+                let id = e.id;
+                let nation = e.country;
+                let proviences = nation.provinces;
+                proviences.forEach(provience => {
+                    if (provience.id == id) {
+                        console.log(provience);
+                    }
+                });
+
+
+            }
+        }
+    </script>
+    <style>
+        .time-zone-container {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/fliker.css">
+    <link rel="stylesheet" href="../styles/flip.min.css">
+</head>
+
+<body>
+    <div class="main-counter cent">
+        
+        <div class="tick" data-did-init="handleTickInit">
+            <div data-layout="horizontal fit">
+                <span data-key="hours" data-transform="pad(00)" data-view="flip"></span>
+                <span data-view="text" data-key="sep" class="tick-text-inline"></span>
+                <span data-key="minutes" data-transform="pad(00)" data-view="flip"></span>
+                <span data-view="text" data-key="sep" class="tick-text-inline"></span>
+                <span data-key="seconds" data-transform="pad(00)" data-view="flip"></span>
+            </div>
+        </div>
+        <div class="setting-icon-container">
+            <img class="svg-cog" id="setting-icon" src="../assets/images/cog.svg" alt="">
+        </div>
+    </div>
+
+
+</body>
+<script src="../scripts/anime.min.js"></script>
+<script>
+    anime({
+        targets: '#anime-splash path',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 1500,
+        delay: function (el, i) { return i * 250 },
+        direction: 'normal',
+        loop: false
+    });
+
+</script>
+<script src="../scripts/flip.min.js"></script>
+<script>
+    function handleTickInit(tick) {
+        Tick.helper.interval(function () {
+            var d = Tick.helper.date();
+            tick.value = {
+                sep: '.',
+                hours: (d.getHours() % 12) || 12,
+                minutes: d.getMinutes(),
+                seconds: d.getSeconds()
+            };
+        });
+
+    }
+</script>
+<script src="../scripts/index.js" defer></script>
+
+</html>
